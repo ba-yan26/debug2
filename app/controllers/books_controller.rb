@@ -9,7 +9,6 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @book = Book.new
-    # @book_fav = Book.find(params[:id])
   end
 
   def create
