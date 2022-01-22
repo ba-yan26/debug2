@@ -28,12 +28,24 @@
               <% end %>
             <% end %>
           </td>
+          <td>
+          <td>コメント数:<%= @book.book_comments.count %></td>
+          </td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
             <td><%= link_to 'Destroy', book_path(@book.id), method: :delete, "data-confirm": "Are you sure?", class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
           <% end %>
         </tr>
       </table>
+      <div>
+        <%= 
+      </div>
+      <div>
+        <%= form_with model:[@book, @book_comment], local:true do |f| %>
+          <%= f.text_area :comment, rows:"5", cols:"80" %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
