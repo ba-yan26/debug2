@@ -41,13 +41,18 @@
         <% @book.book_comments.each do |book_comment| %>
         <tr>
           <td>
-            <%= image_tag book_comment.user.get_profile_image, size: "40x40" %>
+            <%= link_to user_path(@user) do %>
+              <%= image_tag book_comment.user.get_profile_image, size: "40x40" %><br>
+              <%= book_comment.user.name %>
+            <% end %>
           </td>
           <td>
-            <%= book_comment.user.name %>
+            <%= book_comment.comment %>
           </td>
           <td>
-            <%= book.book_comments %>
+            <% if book_comment.user == current_user %>
+              <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class:"btn-sm btn-danger" %>
+            <% end %>
           </td>
         </tr>
         <% end %>
