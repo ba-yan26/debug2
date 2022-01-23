@@ -4,6 +4,8 @@ class CreateRelationships < ActiveRecord::Migration[6.1]
       t.integer :follower_id
       t.integer :followed_id
 
+      drop_table :relationships
+
       t.timestamps
     end
   end

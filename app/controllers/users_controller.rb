@@ -10,7 +10,24 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+    # @users_not = User.where.not(id: current_user.id)
+    # ログインしているユーザー全てを取ってくる
   end
+
+  def followings
+    user = User.find(params[:id])
+    @users = user.followings
+    # ユーザーがフォローしている人全員を取ってくることができる
+  end
+
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
+    # ユーザーをフォローしている人全員を取ってくることができる
+  end
+
+
+
 
   def edit
     @user = User.find(params[:id])
