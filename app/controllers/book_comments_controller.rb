@@ -1,14 +1,14 @@
 class BookCommentsController < ApplicationController
 
   def create
-    book = Book.find(params[:book_id])
-    comment = book.book_comments.new(book_comment_params)
+    @book = Book.find(params[:book_id])
+    @comment = @book.book_comments.new(book_comment_params)
     # book変数に代入したbook.idを空のbook_commentsに代入して新規投稿できるようにする
     # comment = BookComment.new(book_comment_params)
-    comment.user_id = current_user.id
+    @comment.user_id = current_user.id
     # comment.book_id = book.id
-    comment.save
-    redirect_to book_path(book)
+    @comment.save
+    redirect_to book_path(@book)
   end
 
   def destroy
