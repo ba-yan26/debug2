@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get :followers, on: :member
     # あるユーザーフォローしてくれている人（フォロワー）全員を表示するための
   end
+  resources :groups, exept: [:destroy]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

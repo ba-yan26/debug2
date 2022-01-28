@@ -26,9 +26,6 @@ class UsersController < ApplicationController
     # ユーザーをフォローしている人全員を取ってくることができる
   end
 
-
-
-
   def edit
     @user = User.find(params[:id])
   end
