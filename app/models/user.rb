@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
-  has_many :group_users
+  has_many :group_users, dependent: :destroy
 
   # フォローする側
   has_many :relationships, foreign_key: :following_id
