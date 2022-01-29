@@ -11,9 +11,18 @@ class GroupsController < ApplicationController
     @book = Book.new
   end
 
+  def join
+    @group = Group.find(params[:group_id])
+    @group.users << current_user
+    # @group.usersにcurrent_userを追加する
+    redirect_to groups_path
+  end
+
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
+    @group.users << current_user
+    # joinで記述した内容と同じ。これを記述しないとグループ作成者がメンバーとしてカウントされない
     if @group.save
       redirect_to groups_path
     else
@@ -23,7 +32,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @user = current_user
+    @book = Book.new
   end
 
 
@@ -43,11 +52,12 @@ class GroupsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @group = Group.find(params[:id])
-  #   @group.destroy
-  #   redirect_to groups_path
-  # end
+  def destroy
+    @group = Group.find(params[:id])
+    @group.users.destroy(current_user)
+    # current_userは@group.usersから削除される
+    redirect_to groups_path
+  end
 
 
   private
