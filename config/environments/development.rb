@@ -75,4 +75,22 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts << "8f9ccd1733a54b5990c340d7f78ca887.vfs.cloud9.us-east-1.amazonaws.com"
+
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  # config.action_mailerに様々なオプションをつけていく
+  config.action_mailer.raise_delivery_errors = true
+  # raise_delivery_errorsはメールの送信に失敗した時にエラーを出すかどうか
+  config.action_mailer.delivery_method = :smtp
+  # delivery_methodはメールの送信方法。smtpはデフォルト
+  config.action_mailer.smtp_settings = {
+  # smtp_settingsはsmtpの詳細設定。以下内容
+    port:                 587, #SMTPサーバーのポート番号
+    address:              'smtp.gmail.com', #SMTPサーバーのホスト名
+    domain:               'gmail.com', #HELOドメイン
+    user_name:            '', #メール送信に利用するgmailアカウント
+    password:             '', #メール送信に使用するgmailのパスワード
+    authentication:       'login', #認証方法
+    enable_starttls_auto: true #メールの送信にTLS認証を使用するか
+  }
+
 end

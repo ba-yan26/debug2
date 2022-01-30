@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   end
   resources :groups, only: [:index, :new, :show, :edit, :create, :update, :destroy] do
     get "join" => "groups#join"
+    get "new/mail" => "groups#new_mail"
+    get "send/mail" => "groups#send_mail"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
