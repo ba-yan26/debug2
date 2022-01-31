@@ -87,8 +87,8 @@ Rails.application.configure do
     port:                 587, #SMTPサーバーのポート番号
     address:              'smtp.gmail.com', #SMTPサーバーのホスト名
     domain:               'gmail.com', #HELOドメイン
-    user_name:            '', #メール送信に利用するgmailアカウント
-    password:             '', #メール送信に使用するgmailのパスワード
+    user_name:            ENV['KEY'], #メール送信に利用するgmailアカウント
+    password:             ENV['SERECT_KEY'], #メール送信に使用するgmailのパスワード
     authentication:       'login', #認証方法
     enable_starttls_auto: true #メールの送信にTLS認証を使用するか
   }
